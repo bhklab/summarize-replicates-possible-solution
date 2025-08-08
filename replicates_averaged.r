@@ -15,7 +15,7 @@ matching_experiment_ids <- experiment_ids[matches]
 #print(matching_experiment_ids)
 print(paste("Number of experiments:", length(matching_experiment_ids)))
 
-if (length(matching_experiment_ids)!= 0) {
+if (length(matching_experiment_ids) > 1) {
   replicates_dose_viability_list <- list()
   
   for (experiment_id in matching_experiment_ids) {
@@ -44,6 +44,9 @@ if (length(matching_experiment_ids)!= 0) {
        pch = 16,
        ylim = c(min(0, graph_data$Viability), max(1.1, graph_data$Viability)))
   lines(log10(graph_data$Dose), graph_data$Viability)
+} else if(length(matching_experiment_ids) == 1) {
+  drugDoseResponseCurve(screen, drug = my_drug, cellline = my_cellline)
 }
 
   
+
