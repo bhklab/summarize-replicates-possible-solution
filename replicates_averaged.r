@@ -1,12 +1,13 @@
 #specify your sampleid and treatmentid below
 my_cellline <- "COLO 205"
 my_drug <- "Afatinib"
-sensitivity_data <- sensitivityRaw(GDSC_PSet)
+screen <- GDSC_PSet
+sensitivity_data <- sensitivityRaw(screen)
 
 #prints variance between replicates at each dose and a plot of the average dose response curve
-pattern <- paste0(my_cellline, "_", my_drug)
+pattern <- paste0("^", my_cellline, "_", my_drug, "_")
 print(pattern)
-experiment_ids <- dimnames(sensitivityRaw(GDSC_PSet))[[1]]
+experiment_ids <- dimnames(sensitivityRaw(screen))[[1]]
 
 matches <- grepl(pattern, experiment_ids)
 
@@ -44,4 +45,5 @@ if (length(matching_experiment_ids)!= 0) {
        ylim = c(min(0, graph_data$Viability), max(1.1, graph_data$Viability)))
   lines(log10(graph_data$Dose), graph_data$Viability)
 }
+
   
