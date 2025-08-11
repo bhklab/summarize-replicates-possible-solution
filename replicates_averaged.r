@@ -1,11 +1,17 @@
 #specify your sampleid and treatmentid below
 my_cellline <- "COLO 205"
 my_drug <- "Afatinib"
+
+#specify your PSet
 screen <- GDSC_PSet
+
 sensitivity_data <- sensitivityRaw(screen)
 
-#prints variance between replicates at each dose and a plot of the average dose response curve
+#this program prints variance between replicates at each dose and a plot of the average dose response curve
+
+#here, edit the pattern based on how replicate experiments are named in the PSet you are using
 pattern <- paste0("^", my_cellline, "_", my_drug, "_")
+
 print(pattern)
 experiment_ids <- dimnames(sensitivityRaw(screen))[[1]]
 
@@ -49,4 +55,5 @@ if (length(matching_experiment_ids) > 1) {
 }
 
   
+
 
