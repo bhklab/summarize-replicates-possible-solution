@@ -12,6 +12,12 @@ sensitivity_data <- sensitivityRaw(screen)
 #here, edit the pattern based on how replicate experiments are named in the PSet you are using
 pattern <- paste0("^", my_cellline, "_", my_drug, "_")
 
+pattern <- gsub("\\[", "\\\\[", pattern)
+pattern <- gsub("\\]", "\\\\]", pattern)
+pattern <- gsub("\\.", "\\\\.", pattern)
+pattern <- gsub("\\(", "\\\\(", pattern)
+pattern <- gsub("\\)", "\\\\)", pattern)
+
 print(pattern)
 experiment_ids <- dimnames(sensitivityRaw(screen))[[1]]
 
@@ -55,5 +61,6 @@ if (length(matching_experiment_ids) > 1) {
 }
 
   
+
 
 
